@@ -26,3 +26,11 @@ java_binary(
   ],
 )
 
+java_binary(
+  name = "CorrectPath",
+  main_class = "CorrectPath",
+  runtime_deps = [
+    ":dgpslib",
+  ],
+)
+

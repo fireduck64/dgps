@@ -46,6 +46,10 @@ public class Point implements Comparable<Point>
   {
     return new Point(x + p.x, y +  p.y);
   }
+  public Point subtract(Point p)
+  {
+    return add(p.mult(-1.0));
+  }
   public Point mult(double m)
   {
     return new Point(x * m, y * m);
