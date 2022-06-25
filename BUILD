@@ -11,8 +11,16 @@ java_library(
 )
 
 java_binary(
-  name = "Prob",
-  main_class = "Prob",
+  name = "BaseCapture",
+  main_class = "BaseCapture",
+  runtime_deps = [
+    ":dgpslib",
+  ],
+)
+
+java_binary(
+  name = "MobileCapture",
+  main_class = "MobileCapture",
   runtime_deps = [
     ":dgpslib",
   ],
