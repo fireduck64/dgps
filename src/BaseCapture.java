@@ -24,6 +24,7 @@ public class BaseCapture
   private Config config;
 
   public BaseCapture(Config config)
+    throws Exception
   {
     config.require("gps_dev");
     config.require("base_data_path");
@@ -31,6 +32,8 @@ public class BaseCapture
     this.config = config;
 
     new ReaderThread().start();
+
+    System.out.println(FindBase.calc(config));
   }
 
 
