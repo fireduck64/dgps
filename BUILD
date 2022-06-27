@@ -34,3 +34,33 @@ java_binary(
   ],
 )
 
+java_binary(
+  name = "AddPath",
+  main_class = "AddPath",
+  runtime_deps = [
+    ":dgpslib",
+  ],
+)
+
+java_binary(
+  name = "AddBasePoint",
+  main_class = "AddBasePoint",
+  runtime_deps = [
+    ":dgpslib",
+  ],
+)
+java_binary(
+  name = "Conv",
+  main_class = "Conv",
+  runtime_deps = [
+    ":dgpslib",
+  ],
+)
+java_binary(
+  name = "FindAvg",
+  main_class = "FindAvg",
+  runtime_deps = [
+    ":dgpslib",
+  ],
+)
+

@@ -1,5 +1,9 @@
 import java.util.Scanner;
 import java.text.DecimalFormat;
+import java.io.FileInputStream;
+import java.util.List;
+import java.util.LinkedList;
+import java.io.File;
 
 public class Conv
 {
@@ -54,6 +58,68 @@ public class Conv
     DecimalFormat df = new DecimalFormat("0.0000000");
     return x;
 
+  }
+
+  public static List<Point> readPathFile(File in)
+    throws Exception
+  {
+    Scanner scan = new Scanner(new FileInputStream(in));
+
+    LinkedList<Point> list = new LinkedList<>();
+    while(scan.hasNextDouble())
+    {
+      double x= scan.nextDouble();
+      double y =scan.nextDouble();
+
+      list.add(new Point(x,y));
+
+
+    }
+    return list;
+
+  }
+
+  public static final double EARTH_RADIUS_M=6371000;
+
+  public static double getPointDistMeters(Point a, Point b)
+  {
+    double dx = getX(a) - getX(b);
+    double dy = getY(a) - getY(b);
+    double dz = getZ(a) - getZ(b);
+
+    double d = Math.sqrt(dx*dx + dy*dy + dz*dz);
+    
+    return d;
+  }
+
+  private static double getX(Point a)
+  {
+    return EARTH_RADIUS_M * Math.sin(getRho(a)) * Math.cos(getTheta(a));
+  }
+  private static double getY(Point a)
+  {
+    return EARTH_RADIUS_M * Math.sin(getRho(a)) * Math.sin(getTheta(a));
+  }
+  private static double getZ(Point a)
+  {
+    return EARTH_RADIUS_M * Math.cos(getRho(a));
+  }
+
+  private static double getRho(Point a)
+  {
+    return (90.0 - a.x) * Math.PI / 180.0;
+  }
+  public static double getTheta(Point a)
+  {
+    return (a.y) * Math.PI / 180.0;
+  }
+
+  public static void main(String args[]) throws Exception
+  {
+    Point a = new Point(46,-122);
+    Point b = new Point(47,-122);
+
+    System.out.println(getPointDistMeters(a,b));
   }
 
 }

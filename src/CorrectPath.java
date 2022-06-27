@@ -8,13 +8,17 @@ import java.math.BigDecimal;
 import java.util.TreeMap;
 import java.util.List;
 import java.util.LinkedList;
+import java.io.PrintStream;
+import java.io.FileOutputStream;
 
 public class CorrectPath
 {
 
   public static void main(String args[]) throws Exception
   {
-    List<Point> list = calc(new ConfigFile(args[0]), new File(args[1]));
+    List<Point> list = calc(
+      new ConfigFile(args[0]), 
+      new File(args[1]));
 
     System.out.println(list);
 
@@ -26,6 +30,17 @@ public class CorrectPath
       max = new Point(Math.max(p.x, max.x), Math.max(p.y, max.y));
     }
     Point delta = max.subtract(min);
+    if (args.length > 2)
+    {
+      PrintStream out = new PrintStream(new FileOutputStream(args[2], false));
+      for(Point p : list )
+      {
+        out.println(p);
+      }
+      out.close();
+
+    }
+
     System.out.println("Range: " + delta);
     System.out.println("min: " + min);
     System.out.println("max: " + max);
@@ -75,6 +90,8 @@ public class CorrectPath
     LinkedList<Point> lst = new LinkedList<>();
 
 
+
+
     while(scan.hasNextLine())
     {
       String line = scan.nextLine();
@@ -92,8 +109,6 @@ public class CorrectPath
         lst.add(corrected);
         //lst.add(p);
       }
-   
-
     }
     scan.close();
     return lst;

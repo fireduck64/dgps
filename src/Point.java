@@ -14,8 +14,8 @@ public class Point implements Comparable<Point>
   @Override
   public String toString()
   {
-    DecimalFormat df = new DecimalFormat("0.00000000");
-    return String.format("(%s %s)", df.format(x),df.format(y));
+    DecimalFormat df = new DecimalFormat("0.0000000000");
+    return String.format("%s %s", df.format(x),df.format(y));
   }
 
   @Override
